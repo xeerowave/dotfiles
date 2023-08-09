@@ -1,0 +1,8 @@
+dbus-run-session pipewire &
+dbus-run-session pipewire-pulse &
+setxkbmap -option "grp:caps_toggle" us,ru
+xrandr --output "HDMI-0" --mode 1920x1080 --rate 75.00 --primary
+xrandr --output "DP1" --mode 1920x1080 --rate 60.00 --right-of "HDMI-0"
+xinput --set-prop 'pointer:''Logitech G305' 'libinput Accel Speed' -0.5
+xrdb -merge ~/.Xresources
+dbus-run-session bspwm
