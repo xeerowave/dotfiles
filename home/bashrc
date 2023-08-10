@@ -1,0 +1,70 @@
+# .bashrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+####################
+#                  #
+# GENERAL SETTINGS #
+#                  #
+####################
+
+PS1='[\u@\h \W]\$ '
+
+# my prompt
+PS1="\[\033[32m\]󰊠  \[\033[37m\]\[\033[34m\]\w \[\033[0m\]"
+PS2="\[\033[32m\]  > \[\033[0m\]"
+
+# bash history
+HISTSIZE=
+HISTFILESIZE=
+
+#################
+#               #
+# A L I A S E S #
+#               #
+#################
+
+# Power
+alias reboot='doas reboot'
+alias poweroff='doas poweroff'
+alias shutdown='doas shutdown'
+
+# XBPS commands
+alias xi='doas xbps-install -Sf'
+alias xr='doas xbps-remove -ROo'
+alias xu='doas xbps-install -Su'
+alias xq='xbps-query -Rs'
+alias xd='xdeb -Sde'
+alias xdi='doas xbps-install -R binpkgs'
+alias vav='doas xbps-install --repository hostdir/binpkgs'
+alias vrnf='doas xbps-install --repository hostdir/binpkgs/nonfree'
+
+# Verbosity and settings
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -vI'
+alias mkdir='mkdir -pv'
+alias yt='yt-dlp --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3'
+alias ytv='yt-dlp --merge-output-format mp4 -f "bestvideo+bestaudio[ext=m4a]/best" --embed-thumbnail --add-metadata'
+
+# Programs
+alias e='nvim'
+alias ttc='tty-clock -c -C 7 -r -f "%A, %B %d"'
+alias gl='git clone'
+alias lf='lfub'
+alias ls='exa --group-directories-first --icons'
+alias ll='ls --long'
+alias tree='ls --tree'
+
+
+#################
+#               #
+# P R O F I L E #
+#               #
+#################
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.config/bspwm/rofi/scripts:$PATH"
+
+neofetch
