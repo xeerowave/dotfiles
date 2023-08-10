@@ -1,0 +1,129 @@
+# Open terminal
+super + Return
+	alacritty
+
+# App launcher
+super + d
+	rofi -show drun -config .config/bspwm/rofi/configs/config.rasi -width 420
+
+# Powermenu
+super + x
+	powermenu
+
+# Open file manager
+super + e
+	thunar
+
+# Open browser
+super + b
+	librewolf
+
+# Open telegram
+super + a
+	telegram-desktop
+
+# Make screenshot
+Print
+	flameshot gui
+
+# Dunst mute/unmute
+super + m
+	{dunstctl set-paused true && polybar-msg hook dunst 2, \
+	 dunstctl set-paused false && polybar-msg hook dunst 1}
+
+# Dunst history
+super + shift + d
+	{dunst_hist display-history, dunst_hist close-history}
+
+# Colorpiker
+super + p
+	colorpicker
+
+# Clipboard
+super + c
+	rofi -modi "clipboard:greenclip print" -show clipboard -config ~/.config/bspwm/rofi/configs/config.rasi
+
+# Hide bar 
+super + shift + b
+	$HOME/.config/bspwm/polybar/hide.sh
+
+# Increase/decrease volume
+XF86Audio{RaiseVolume,LowerVolume}
+	volume --{up,down}
+
+# Mute/unmute volume
+XF86AudioMute
+	volume --toggle
+
+# Increase/decrease brightness
+XF86MonBrightness{Up,Down}
+	bright --{up,down}
+
+# Close/kill focus app
+super + {q, shift + q}
+	bspc node -{c,k}
+
+# Reload sxhkd config
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# wm reload and quit
+super + shift + r
+	bspc wm -r
+
+super + shift + e
+	bspc quit
+
+# Set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# Focus/send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Preselect the direction
+super + alt + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# Cancel the preselection for the focused node
+super + alt + space
+	bspc node -p cancel 
+
+# Move current window to a pre-selected space
+super + alt + m
+	bspc node -n last.!automatic
+
+# Show help
+super + shift + s
+	sxhkd_help
+
+# Resize tiling windows
+super + ctrl + {Left,Down,Up,Right}
+	{bspc node -z left -20 0; bspc node -z right -20 0, \
+	bspc node -z bottom 0 20; bspc node -z top 0 20, \
+	bspc node -z bottom 0 -20; bspc node -z top 0 -20, \ 
+	bspc node -z left 20 0; bspc node -z right 20 0}
+
+# books
+super + shift + p
+	$HOME/.config/bspwm/rofi/scripts/books
+
+# Resize floating windows
+alt + ctrl + {Left,Down,Up,Right}
+	bspc node -z {right -20 20, bottom 20 20, bottom 20 -20, right 20 20}
+
+# move floating windows 
+alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + {equal, minus, 0}
+	gaps {+, -, =}
+
+super + ctrl + {equal, minus, 0}
+	borders {+, -, =}
+
